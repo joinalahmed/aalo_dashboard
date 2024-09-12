@@ -1,0 +1,7 @@
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+Werkzeug
+boto3
+uvicorn
+gunicorn

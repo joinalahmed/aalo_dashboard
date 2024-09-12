@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aalo Labs - Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://i.ibb.co/F6sptLD/aalo-labs-logo.png" alt="Aalo Labs Logo" class="logo">
+        </header>
+        <main>
+            <div class="login-container">
+                <h1>Sign in</h1>
+                <div class="login-box">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="email">Email (username)</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="sign-in-button">Sign in</button>
+                    </form>
+                </div>
+                <div class="register-link">
+                    <a href="#" id="createAccountLink">Create an Aalo Labs Account</a>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; 2024, Aalo Labs or its affiliates. All rights reserved.</p>
+        </footer>
+    </div>
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create an Aalo Labs Account</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regOrgName">Organization Name</label>
+                    <input type="text" id="regOrgName" name="regOrgName" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email</label>
+                    <input type="email" id="regEmail" name="regEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Password</label>
+                    <input type="password" id="regPassword" name="regPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="regConfirmPassword">Confirm Password</label>
+                    <input type="password" id="regConfirmPassword" name="regConfirmPassword" required>
+                </div>
+                <button type="submit" class="sign-in-button">Create Account</button>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
