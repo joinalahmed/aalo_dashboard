@@ -17,8 +17,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'your_secret_key_here'  # Change this to a random secret key
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-s3_client = boto3.client('s3', region_name='eu-north-1', aws_access_key_id="AKIA4DMVQXN6NGD5GFNH", 
-                         aws_secret_access_key="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")
+s3_client = boto3.client('s3', region_name='eu-north-1', aws_access_key_id="", 
+                         aws_secret_access_key="")
 
 # Models
 class Organization(db.Model):
