@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Organization - AaloLabs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6200EA;
+            --secondary-color: #03DAC6;
+            --background-color: #0A0E17;
+            --text-color: #FFFFFF;
+            --card-bg: #1A1E2E;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            background-color: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .header img {
+            width: 100px;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+        }
+
+        .create-org-form {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            font-size: 16px;
+        }
+
+        button {
+            padding: 15px 30px;
+            background-color: var(--secondary-color);
+            color: var(--background-color);
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--card-bg);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="https://i.ibb.co/F6sptLD/aalo-labs-logo.png" alt="AaloLabs Logo">
+    </header>
+
+    <main class="main-content">
+        <div class="create-org-form">
+            <h1>Create Your Organization</h1>
+            <form method="POST" action="{{ url_for('create_organization') }}">
+                <label for="name">Organization Name:</label>
+                <input type="text" id="name" name="name" required>
+                <button type="submit">Create Organization</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        © 2024 AaloLabs. All Rights Reserved.
+    </footer>
+</body>
+</html>
