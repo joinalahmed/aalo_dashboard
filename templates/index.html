@@ -3,299 +3,413 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AaloLabs - GenAI Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>AaloLabs - Save 80% on LLM Bills</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #6200EA;
-            --secondary-color: #03DAC6;
-            --background-color: #0A0E17;
+            --background-color: #021027;
             --text-color: #FFFFFF;
-            --card-bg: #1A1E2E;
+            --accent-color: #8C5AFF;
+            --secondary-bg: #1A1A1A;
+            --border-color: #333333;
+            --gradient-start: #8C5AFF;
+            --gradient-end: #FF5A8C;
+            --complementary-color: #5AFFCB;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background: linear-gradient(to bottom, #021027, #000000);
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
         }
 
         .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 50px;
-    background-color: rgba(10, 14, 23, 0.8);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    height: 60px; /* Added fixed height */
-}
-
-        .header img {
-            width: 60px;
+            background-color: rgba(2, 16, 39, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .nav-links {
+        .header .content-wrapper {
             display: flex;
-            gap: 20px;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .nav-links a {
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
             color: var(--text-color);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        .auth-buttons {
             display: flex;
-            gap: 10px;
+            align-items: center;
         }
 
-        .auth-buttons button {
-            padding: 8px 15px;
-            background-color: transparent;
-            border: 2px solid var(--secondary-color);
-            color: var(--secondary-color);
-            font-size: 14px;
+        .logo img {
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .login-btn, .request-access-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
             font-weight: 600;
-            border-radius: 20px;
-            cursor: pointer;
+            text-decoration: none;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        .auth-buttons button:hover {
-            background-color: var(--secondary-color);
-            color: var(--background-color);
+        .login-btn {
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .login-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+        }
+
+        .request-access-btn {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+        }
+
+        .request-access-btn:hover {
+            background-color: #7B4DE0;
         }
 
         .hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 150px 50px 40px;
-    background: linear-gradient(135deg, #0A0E17, #1A1E2E);
-}
+            padding: 8rem 0 1rem;
+            text-align: center;
+            position: relative;
+        }
 
-.section {
-    padding: 10px 20px;
-}
-        .hero-content {
-            max-width: 50%;
+        .features {
+            padding: 1rem 0 2rem;
+            text-align: center;
+            position: relative;
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 3.5rem;
             font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: var(--complementary-color);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--accent-color);
+        }
+
+        .features > p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: var(--complementary-color);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
         .cta-button {
-            padding: 15px 30px;
-            background-color: var(--secondary-color);
-            color: var(--background-color);
-            font-size: 16px;
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
             font-weight: 600;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .cta-button:hover {
-            background-color: var(--primary-color);
-            color: var(--text-color);
+            background-color: #7B4DE0;
             transform: translateY(-2px);
         }
 
-        .hero-image {
-            max-width: 45%;
+        .cta-button.secondary {
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
         }
 
-        .hero-image img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        .cta-button.secondary:hover {
+            background-color: var(--accent-color);
         }
 
-        
-
-        .section h2 {
-            font-size: 36px;
-            margin-bottom: 40px;
-            text-align: center;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .features {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
         .feature {
-            text-align: center;
-            max-width: 300px;
-            margin-bottom: 40px;
-            background-color: var(--card-bg);
-            padding: 30px;
+            background-color: rgba(10, 10, 10, 0.6);
+            padding: 2rem;
             border-radius: 10px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(5px);
             transition: transform 0.3s ease;
         }
 
         .feature:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
 
         .feature img {
-    width: 80px;
-    margin-bottom: 20px;
-    filter: brightness(0) invert(1); /* This makes the image white */
-}
-
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+        }
 
         .feature h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
         }
 
         .feature p {
-            font-size: 16px;
-            color: #BBB;
-        }
-
-        .pricing {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        .price-card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .price-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .price-card h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: var(--secondary-color);
-        }
-
-        .price-card .price {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .price-card ul {
-            list-style-type: none;
-            padding: 0;
-            margin-bottom: 30px;
-        }
-
-        .price-card li {
-            margin-bottom: 10px;
-        }
-
-        .about, .contact {
-            text-align: center;
+            color: #A0AEC0;
         }
 
         footer {
+            background-color: rgba(2, 16, 39, 0.8);
+            color: #A0AEC0;
+            padding: 0.5rem 0;
             text-align: center;
-            padding: 20px;
-            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            position: relative;
         }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: #A0AEC0;
+            margin: 0 0.5rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1, .features h2 {
+                font-size: 2.5rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .potato-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .potato {
+            position: absolute;
+            font-size: 24px;
+            animation: float-potato 15s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes float-potato {
+            0% {
+                transform: translate(0, 100vh) rotate(0deg);
+            }
+            100% {
+                transform: translate(0, -100vh) rotate(360deg);
+            }
+        }
+
+        .potato:nth-child(1) { left: 5%; animation-duration: 17s; }
+        .potato:nth-child(2) { left: 10%; animation-duration: 21s; animation-delay: -5s; }
+        .potato:nth-child(3) { left: 15%; animation-duration: 19s; animation-delay: -10s; }
+        .potato:nth-child(4) { left: 20%; animation-duration: 23s; animation-delay: -7s; }
+        .potato:nth-child(5) { left: 25%; animation-duration: 20s; animation-delay: -3s; }
+        .potato:nth-child(6) { left: 30%; animation-duration: 22s; animation-delay: -8s; }
+        .potato:nth-child(7) { left: 35%; animation-duration: 18s; animation-delay: -2s; }
+        .potato:nth-child(8) { left: 40%; animation-duration: 24s; animation-delay: -6s; }
+        .potato:nth-child(9) { left: 45%; animation-duration: 16s; animation-delay: -9s; }
+        .potato:nth-child(10) { left: 50%; animation-duration: 25s; animation-delay: -4s; }
+        .potato:nth-child(11) { left: 55%; animation-duration: 19s; animation-delay: -1s; }
+        .potato:nth-child(12) { left: 60%; animation-duration: 21s; animation-delay: -11s; }
+        .potato:nth-child(13) { left: 65%; animation-duration: 18s; animation-delay: -3s; }
+        .potato:nth-child(14) { left: 70%; animation-duration: 23s; animation-delay: -7s; }
+        .potato:nth-child(15) { left: 75%; animation-duration: 20s; animation-delay: -5s; }
+        .potato:nth-child(16) { left: 80%; animation-duration: 22s; animation-delay: -9s; }
+        .potato:nth-child(17) { left: 85%; animation-duration: 17s; animation-delay: -2s; }
+        .potato:nth-child(18) { left: 90%; animation-duration: 24s; animation-delay: -6s; }
+        .potato:nth-child(19) { left: 95%; animation-duration: 19s; animation-delay: -8s; }
+        .potato:nth-child(20) { left: 100%; animation-duration: 21s; animation-delay: -4s; }
     </style>
 </head>
 <body>
-    <header class="header">
-        <img src="https://i.ibb.co/F6sptLD/aalo-labs-logo.png" alt="AaloLabs Logo">
-        
-        <div class="auth-buttons">
-            <button id="loginButton">Log In</button>
-            <button id="registerButton">Sign Up</button>
+    <div class="container">
+        <header class="header">
+            <div class="content-wrapper">
+                <a href="#" class="logo">
+                    <img src="https://i.ibb.co/F6sptLD/aalo-labs-logo.png" alt="AaloLabs Logo">
+                    AaloLabs
+                </a>
+                <nav class="nav-buttons">
+                    <button id="loginButton" class="login-btn">Login</button>
+                    <a href="#" class="request-access-btn">Request access</a>
+                </nav>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="content-wrapper">
+                <h1>Save 80% on your LLM Bills with AaloLabs</h1>
+                <p>AaloLabs provides best-in-class platform for Training, Data Curation and fine-tuning Small Language Models, enabling massive cost savings without compromising on quality.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="cta-button">Start Saving Now</a>
+                    <a href="#" class="cta-button secondary">Book a demo</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="content-wrapper">
+                <h2>Why Choose AaloLabs</h2>
+                <p>Discover the advantages that make AaloLabs the perfect choice for optimizing your AI infrastructure and reducing costs.</p>
+                <div class="feature-grid">
+                    <div class="feature">
+                        <img src="https://api.iconify.design/mdi:code-braces.svg" alt="Easy Integration Icon" style="filter: invert(1);">
+                        <h3>Easy Integration</h3>
+                        <p>Modify just 2 lines of code to start saving 80% on your LLM bills.</p>
+                    </div>
+                    <div class="feature">
+                        <img src="https://api.iconify.design/mdi:tune.svg" alt="Auto Fine-Tuning Icon" style="filter: invert(1);">
+                        <h3>Auto Fine-Tuning</h3>
+                        <p>Our platform automatically fine-tunes SLMs for your specific tasks, optimizing performance and cost.</p>
+                    </div>
+                    <div class="feature">
+                        <img src="https://api.iconify.design/mdi:chart-line.svg" alt="Cost Savings Icon" style="filter: invert(1);">
+                        <h3>80% Cost Reduction</h3>
+                        <p>Achieve significant savings on your AI infrastructure costs without sacrificing quality or performance.</p>
+                    </div>
+                    <div class="feature">
+                        <img src="https://api.iconify.design/mdi:rocket-launch.svg" alt="Seamless Deployment Icon" style="filter: invert(1);">
+                        <h3>Seamless Deployment</h3>
+                        <p>We handle hosting and traffic management for your fine-tuned models, ensuring smooth scaling to millions of requests.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="content-wrapper">
+                <p>&copy; 2024 AaloLabs. All Rights Reserved.</p>
+                
+            </div>
+        </footer>
+
+        <!-- Floating potato emoticons -->
+        <div class="potato-container">
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
+            <div class="potato">🥔</div>
         </div>
-    </header>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Revolutionize Your GenAI Workflow</h1>
-            <p>Empower your team with AaloLabs' cutting-edge platform for Small Language Model Tracing, Monitoring, Tuning, and Deployment.</p>
-            <button class="cta-button">Start Free Trial</button>
-        </div>
-        
-    </section>
-
-    <section id="features" class="section">
-        <h2>Features</h2>
-        <div class="features">
-            <div class="feature">
-                <img src="https://api.iconify.design/mdi:chart-line.svg" alt="Tracing Icon">
-                <h3>Advanced Tracing</h3>
-                <p>Gain deep insights into your small language models with our state-of-the-art tracing tools. Visualize model behavior, track performance metrics, and identify optimization opportunities.</p>
-            </div>
-            <div class="feature">
-                <img src="https://api.iconify.design/mdi:monitor-dashboard.svg" alt="Monitoring Icon">
-                <h3>Real-time Monitoring</h3>
-                <p>Keep track of your models' performance with our comprehensive monitoring dashboard. Set up custom alerts, track resource usage, and ensure optimal model health.</p>
-            </div>
-            <div class="feature">
-                <img src="https://api.iconify.design/mdi:tune.svg" alt="Tuning Icon">
-                <h3>Efficient Tuning</h3>
-                <p>Optimize your models with our intelligent tuning algorithms for maximum performance. Leverage automated hyperparameter optimization and fine-tuning techniques.</p>
-            </div>
-            <div class="feature">
-                <img src="https://api.iconify.design/mdi:rocket-launch.svg" alt="Deployment Icon">
-                <h3>Seamless Deployment</h3>
-                <p>Deploy your models with ease using our streamlined deployment pipeline. Enjoy one-click deployments, version control, and rollback capabilities.</p>
-            </div>
-        </div>
-    </section>
-
-    
-
-    <footer>
-        © 2024 AaloLabs. All Rights Reserved.
-    </footer>
+    </div>
 
     <script>
         document.getElementById('loginButton').addEventListener('click', function() {
             window.location.href = "/login";
-        });
-
-        document.getElementById('registerButton').addEventListener('click', function() {
-            window.location.href = "/register";
         });
 
         // Smooth scrolling for navigation links
@@ -308,5 +422,6 @@
             });
         });
     </script>
+
 </body>
 </html>

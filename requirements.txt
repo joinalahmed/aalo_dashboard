@@ -1,3 +1,5 @@
+flask_cognito_lib
+flask_session
 Flask
 Flask-SQLAlchemy
 Flask-Migrate

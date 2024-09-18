@@ -67,19 +67,12 @@ function showDashboard() {
 
 function showProjects() {
     const contentTitleContainer = document.getElementById('contentTitle');
-
-    // Clear the container
     contentTitleContainer.innerHTML = '';
-
-    // Create title and button elements
     const title = document.createElement('h2');
     title.innerText = 'Projects';
-
     const button = document.createElement('button');
     button.innerText = 'Create';
     button.onclick = () => showModal('projectModal');
-
-    // Append title and button to the container
     contentTitleContainer.appendChild(title);
     contentTitleContainer.appendChild(button);
 
@@ -104,32 +97,22 @@ function showProjects() {
         .catch(error => console.error('Error:', error));
 }
 
-
 function loadProjectDetails(projectId) {
     fetch(`/api/get_project/${projectId}`)
         .then(response => response.json())
         .then(project => {
             const contentTitleContainer = document.getElementById('contentTitle');
-            
-            // Clear the container
             contentTitleContainer.innerHTML = '';
-            
-            // Create title and button elements
             const title = document.createElement('h2');
             title.innerText = project.name;
-
             const button = document.createElement('button');
             button.innerText = 'Create';
             button.onclick = () => showApplicationModal(project.id);
-
-            // Append title and button to the container
             contentTitleContainer.appendChild(title);
             contentTitleContainer.appendChild(button);
 
             const contentArea = document.getElementById('contentArea');
-            
             contentArea.innerHTML = `
-                
                 <h3>Applications</h3>
                 <div id="applicationCards" class="card-grid"></div>
             `;
@@ -138,7 +121,6 @@ function loadProjectDetails(projectId) {
         })
         .catch(error => console.error('Error:', error));
 }
-
 
 function loadProjectApplications(projectId) {
     fetch(`/api/get_applications/${projectId}`)
@@ -197,19 +179,12 @@ function loadApplicationDetails(appId) {
         .then(response => response.json())
         .then(app => {
             const contentTitleContainer = document.getElementById('contentTitle');
-
-            // Clear the container
             contentTitleContainer.innerHTML = '';
-
-            // Create title and button elements
             const title = document.createElement('h2');
             title.innerText = app.name;
-
             const button = document.createElement('button');
             button.innerText = 'Manage API Keys';
             button.onclick = () => showApiKeyModal(app.id);
-
-            // Append title and button to the container
             contentTitleContainer.appendChild(title);
             contentTitleContainer.appendChild(button);
 
@@ -242,7 +217,7 @@ function loadJsonFiles(appId) {
         .then(response => response.json())
         .then(files => {
             const jsonFileList = document.getElementById('jsonFileList');
-            if (files.length === 0) {
+            if (Object.keys(files).length === 0) {
                 jsonFileList.innerHTML = `
                     <p>No API traces available</p>
                     <p>Here's an example of how to push JSON data using Python:</p>
@@ -273,14 +248,11 @@ else:
     print('Error:', response.json())
                         </code></pre>
                         <button class="copy-btn" onclick="copyCode(this)">📋</button>
-                        
                     </div>
                     <p>Replace &lt;endpoint&gt; with your API endpoint and APPLICATION_KEY with your actual API key.</p>
                 `;
             } else {
-                jsonFileList.innerHTML = '<ul>' + 
-                    files.map(file => `<li><a href="#" onclick="loadJsonContent('${file}')">${file.split('/').pop()}</a></li>`).join('') +
-                    '</ul>';
+                jsonFileList.innerHTML = renderFileTree(files);
             }
         })
         .catch(error => {
@@ -288,6 +260,19 @@ else:
             const jsonFileList = document.getElementById('jsonFileList');
             jsonFileList.innerHTML = '<p>Error loading API traces. Please try again later.</p>';
         });
+}
+
+function renderFileTree(tree, path = '') {
+    let html = '<ul>';
+    for (const [key, value] of Object.entries(tree)) {
+        if (typeof value === 'object') {
+            html += `<li><span class="caret">${key}</span>${renderFileTree(value, path + key + '/')}</li>`;
+        } else {
+            html += `<li><a href="#" onclick="loadJsonContent('${value}')">${key}</a></li>`;
+        }
+    }
+    html += '</ul>';
+    return html;
 }
 
 function loadJsonContent(filePath) {
@@ -306,24 +291,6 @@ function loadJsonContent(filePath) {
             const jsonContent = document.getElementById('jsonContent');
             jsonContent.innerHTML = '<p>Error loading JSON content. Please try again later.</p>';
         });
-}
-
-function createCollapsibleJson(json) {
-    const ul = document.createElement('ul');
-    ul.className = 'json-tree';
-
-    for (let key in json) {
-        const li = document.createElement('li');
-        if (typeof json[key] === 'object' && json[key] !== null) {
-            li.innerHTML = `<span class="caret">${key}</span>`;
-            li.appendChild(createCollapsibleJson(json[key]));
-        } else {
-            li.innerHTML = `<span>${key}: ${json[key]}</span>`;
-        }
-        ul.appendChild(li);
-    }
-
-    return ul;
 }
 
 function showApiKeyModal(appId) {
@@ -413,7 +380,7 @@ function revokeApiKey(keyId) {
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
-                    alert(data.error);
+                    alert(data.alert(data.error));
                 } else {
                     alert('API key revoked successfully');
                     const appId = document.querySelector('.application-details').dataset.appId;
@@ -519,19 +486,20 @@ function showApplicationModal(projectId) {
     projectIdInput.value = projectId;
     showModal('applicationModal');
 }
+
 function copyCode(button) {
     const codeElement = button.closest('.code-block').querySelector('code');
     const codeText = codeElement.textContent;
     navigator.clipboard.writeText(codeText).then(() => {
-        button.textContent = '✅'; // Change to checkmark when copied
+        button.textContent = '✅';
         setTimeout(() => {
-            button.textContent = '📋'; // Change back to clipboard after 2 seconds
+            button.textContent = '📋';
         }, 2000);
     }).catch(err => {
         console.error('Failed to copy code: ', err);
-        button.textContent = '❌'; // Change to X if failed
+        button.textContent = '❌';
         setTimeout(() => {
-            button.textContent = '📋'; // Change back to clipboard after 2 seconds
+            button.textContent = '📋';
         }, 2000);
     });
 }
@@ -540,15 +508,15 @@ function copyApiKey(button) {
     const apiKeyElement = button.previousElementSibling;
     const apiKey = apiKeyElement.textContent;
     navigator.clipboard.writeText(apiKey).then(() => {
-        button.textContent = '✅'; // Change to checkmark when copied
+        button.textContent = '✅';
         setTimeout(() => {
-            button.textContent = '📋'; // Change back to clipboard after 2 seconds
+            button.textContent = '📋';
         }, 2000);
     }).catch(err => {
         console.error('Failed to copy API Key: ', err);
-        button.textContent = '❌'; // Change to X if failed
+        button.textContent = '❌';
         setTimeout(() => {
-            button.textContent = '📋'; // Change back to clipboard after 2 seconds
+            button.textContent = '📋';
         }, 2000);
     });
 }
@@ -638,8 +606,8 @@ function showApiDocs() {
 // Event listener for caret clicks in JSON viewer
 document.addEventListener('click', function(e) {
     if (e.target.className === 'caret') {
-        this.classList.toggle("caret-down");
-        this.parentElement.querySelector(".nested").classList.toggle("active");
+        e.target.parentElement.querySelector(".nested").classList.toggle("active");
+        e.target.classList.toggle("caret-down");
     }
 });
 

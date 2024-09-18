@@ -243,6 +243,7 @@ form textarea {
 .active {
     display: block;
 }
+
 .json-viewer {
     background-color: #f4f4f4;
     border: 1px solid #ddd;
@@ -256,40 +257,22 @@ form textarea {
     overflow-y: auto;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-    .sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #e0e0e0;
-    }
-
-    main {
-        width: 100%;
-    }
-
-    .card-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
+/* Content Title Styles */
 #contentTitle {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* If you want the button to be on the far right */
+    justify-content: space-between;
 }
 
 #contentTitle h2 {
-    margin-right: 20px; /* Add some space between the title and button */
+    margin-right: 20px;
 }
 
 #contentTitle button {
     margin-left: auto;
 }
 
+/* API Traces Content Styles */
 .api-traces-content {
     display: flex;
     gap: 20px;
@@ -311,7 +294,7 @@ form textarea {
 
 .json-file-list ul {
     list-style-type: none;
-    padding: 0;
+    padding-left: 20px;
 }
 
 .json-file-list li {
@@ -327,15 +310,7 @@ form textarea {
     text-decoration: underline;
 }
 
-.json-viewer {
-    background-color: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-radius: 4px;
-    padding: 10px;
-    font-family: monospace;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-}
+/* Copy Button Styles */
 .copy-btn {
     background: none;
     border: none;
@@ -343,4 +318,60 @@ form textarea {
     cursor: pointer;
     padding: 0;
     margin-left: 5px;
+}
+
+/* Tooltip Styles */
+.tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 1000;
+}
+
+/* Scrollbar Styles */
+.json-file-list, .json-viewer {
+    scrollbar-width: thin;
+    scrollbar-color: #007bff #f8f9fa;
+}
+
+.json-file-list::-webkit-scrollbar, .json-viewer::-webkit-scrollbar {
+    width: 8px;
+}
+
+.json-file-list::-webkit-scrollbar-track, .json-viewer::-webkit-scrollbar-track {
+    background: #f8f9fa;
+}
+
+.json-file-list::-webkit-scrollbar-thumb, .json-viewer::-webkit-scrollbar-thumb {
+    background-color: #007bff;
+    border-radius: 4px;
+    border: 2px solid #f8f9fa;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    main {
+        width: 100%;
+    }
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+    .api-traces-content {
+        flex-direction: column;
+    }
+    .json-file-list, .json-content {
+        flex: 1 1 auto;
+        max-height: none;
+    }
 }
